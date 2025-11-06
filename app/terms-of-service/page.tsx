@@ -2,6 +2,10 @@ import { createClient } from "redis";
 import ReactMarkdown from "react-markdown";
 import Header from "../components/Header";
 
+// Force dynamic rendering to always fetch fresh data from Redis
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function TermsOfServicePage() {
   let content: string | null = null;
   let redis;

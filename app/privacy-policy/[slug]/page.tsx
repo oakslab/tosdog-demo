@@ -1,19 +1,19 @@
 import { createClient } from "redis";
 import ReactMarkdown from "react-markdown";
-import Header from "../components/Header";
+import Header from "@/app/components/Header";
 
 // Force dynamic rendering to always fetch fresh data from Redis
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function TermsOfServicePage() {
+export default async function PrivacyPolicyPage() {
   let content: string | null = null;
   let redis;
 
   try {
     redis = createClient({ url: process.env.REDIS_URL });
     await redis.connect();
-    content = await redis.get("tos_content");
+    content = await redis.get("privacy_content");
   } catch (error) {
     console.error("Redis error:", error);
   } finally {
@@ -28,12 +28,12 @@ export default async function TermsOfServicePage() {
       <div className="py-12 px-4">
         <div className="mx-auto max-w-3xl bg-white p-8 shadow-sm dark:bg-zinc-800">
           <h1 className="mb-6 text-3xl font-bold text-zinc-900 dark:text-zinc-50">
-            Terms of Service
+            Privacy Policy
           </h1>
 
           {content === null ? (
             <p className="text-zinc-600 dark:text-zinc-400">
-              No Terms of Service uploaded yet.
+              No Privacy Policy uploaded yet.
             </p>
           ) : (
             <div className="prose prose-zinc dark:prose-invert max-w-none">

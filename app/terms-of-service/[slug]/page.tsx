@@ -1,6 +1,6 @@
 import { createClient } from "redis";
 import ReactMarkdown from "react-markdown";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
 // Force dynamic rendering to always fetch fresh data from Redis
 export const dynamic = "force-dynamic";
